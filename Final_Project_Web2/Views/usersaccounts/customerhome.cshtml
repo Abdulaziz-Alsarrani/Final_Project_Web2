@@ -1,0 +1,123 @@
+﻿@{
+    ViewData["Title"] = "Home Customer";
+    Layout = "_Layout1";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom right, #000000, #2f2f2f); /* Black to Dark Gray */
+            margin: 0;
+            padding: 0;
+            color: #fff; /* White text color */
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #fff; /* White color for headers */
+        }
+
+        .container-fluid {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1); /* Slightly transparent white */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* White border with low opacity */
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            max-width: 300px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Dark shadow for depth */
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s, margin-top 0.3s;
+        }
+
+            .card:hover {
+                transform: translateY(-10px); /* Slightly larger movement */
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5); /* Darker shadow on hover */
+                margin-top: -10px; /* Small lift effect */
+            }
+
+            .card img {
+                width: 100%;
+                border-radius: 8px;
+                margin-bottom: 15px;
+            }
+
+            .card h5 {
+                color: #c0c0c0; /* Silver color for item names */
+                margin: 10px 0;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            .card .card-text {
+                margin-bottom: 10px;
+                font-size: 14px;
+                color: #fff; /* White color for text */
+            }
+
+        /* More button styling */
+        .btn-primary {
+            background: linear-gradient(to right, #000000, #c0c0c0); /* Black to Silver gradient */
+            color: black;
+            border: none;
+            padding: 12px 20px; /* Slightly larger button */
+            font-size: 16px; /* Larger font size */
+            border-radius: 8px; /* Rounded corners */
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.4s ease-in-out; /* Smooth transition */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+        }
+
+            .btn-primary:hover {
+                background: linear-gradient(to right, #c0c0c0, #000000); /* Reverse gradient on hover */
+                color: white; /* White text on hover */
+                transform: translateY(-3px); /* Slight lift on hover */
+                box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+            }
+
+    </style>
+</head>
+<body>
+    <h1>Welcome, @ViewData["name"]</h1>
+
+    <h2>Discounted Items</h2>
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="card">
+                    <img src="~/images/@item.imgfile" class="card-img-top" alt="Item Image">
+                    <div class="card-body">
+                        <p class="card-text">Id: @item.Id</p>
+                        <h5 class="card-title">@item.name</h5>
+                        <p class="card-text">Price: @item.price</p>
+                        <p class="card-text">Discount: @item.discount%</p>
+                    </div>
+                    <a asp-controller="items" asp-action="Details" class="btn btn-primary" asp-route-id="@item?.Id">More</a>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>

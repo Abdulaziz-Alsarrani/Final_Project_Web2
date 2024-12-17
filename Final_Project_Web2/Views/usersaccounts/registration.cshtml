@@ -1,0 +1,168 @@
+﻿@{
+    ViewData["Title"] = "Register";
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        /* Apply a full height background */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full height of the viewport */
+        }
+
+        /* Container for the form */
+        .form-container {
+            width: 400px; /* Fixed width for the form */
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Form input fields */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%; /* Make input and select elements take the full width */
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            box-sizing: border-box; /* To include padding in the element's total width */
+        }
+
+            input:focus, select:focus {
+                border-color: #007bff;
+                outline: none;
+                background-color: #fff;
+            }
+
+        .btn-primary {
+            width: 100%; /* Full width button */
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+            }
+
+        /* Alert style */
+        .alert {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            display: none;
+        }
+
+            .alert p {
+                margin: 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Register Customer</h2>
+        <form asp-action="Registration" method="post">
+            <div class="form-group">
+                <label for="UserName">Name</label>
+                <input type="text" id="UserName" name="Name" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="email" id="Email" name="Email" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="Password">Password</label>
+                <input type="password" id="Password" name="Password" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="ConfirmPassword">Confirm Password</label>
+                <input type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="Job">Job</label>
+                <input type="text" id="Job" name="Job" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="Married">Married</label>
+                <select id="Married" name="Married" class="form-control" required>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Gender">Gender</label>
+                <select id="Gender" name="Gender" class="form-control" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Location">Location</label>
+                <input type="text" id="Location" name="Location" class="form-control" required />
+            </div>
+
+            <button type="submit" class="btn-primary">Register</button>
+        </form>
+
+        <div class="alert alert-danger" role="alert">
+            <p>@ViewData["Message"]</p>
+        </div>
+    </div>
+
+    <script>
+        // If there's an alert message, show the alert
+        @if (ViewData["Message"] != null)
+        {
+            <text>
+                    document.querySelector('.alert').style.display = 'block';
+            </text>
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+﻿@model Final_Project_Web2.Models.usersaccounts
+@{
+    ViewData["Title"] = "Login";
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        /* Global style */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Centered login container */
+        .login-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+            .login-container img {
+                max-width: 100px;
+                margin-bottom: 20px;
+            }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+            .form-control:focus {
+                border-color: #007bff;
+                outline: none;
+            }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+            .form-check input {
+                margin-right: 8px;
+            }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+            .btn:hover {
+                background-color: #0056b3;
+            }
+
+        .error-message {
+            color: #d9534f;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .mt-3 {
+            margin-top: 10px;
+        }
+
+        p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Logo Image -->
+        <img src="~/images/note.jpg" alt="Logo" />
+
+        <h1>Login</h1>
+        <form asp-action="Login">
+            <div class="form-group">
+                <label for="username">User Name</label>
+                <input id="username" name="na" class="form-control" placeholder="Enter your name" required />
+            </div>
+            <div class="form-group">
+                <label for="password">User Password</label>
+                <input type="password" id="password" name="pa" class="form-control" placeholder="Enter your password" required />
+            </div>
+            <div class="form-check">
+                <input type="checkbox" name="auto" id="auto-login" />
+                <label for="auto-login">Auto login</label>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <div class="form-group mt-3">
+                <p>Don’t have an account? <a asp-action="registration" asp-controller="usersaccounts">Register here</a></p>
+            </div>
+            <p class="error-message">@ViewData["message"]</p>
+        </form>
+    </div>
+</body>
+</html>

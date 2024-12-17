@@ -1,0 +1,32 @@
+﻿﻿@{
+    ViewData["Title"] = "Send Email";
+    Layout = "_Layout";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Page Title</title>
+
+
+</head>
+<body>
+    <div class="form-container">
+        <form asp-action="email">
+            <div class="form-group">
+                <label for="address">Customer Email Address</label>
+                <input type="email" name="address" class="form-control" required />
+
+                <div class="form-group">
+                    <label for="Message">Message</label>
+                    <textarea name="body" rows="4" class="form-control" required></textarea>
+                </div>
+                <input type="submit" value="Send" class="btn btn-default" />
+                <p>@ViewData["message"]</p>
+        </form>
+    </div>
+</body>
+</html>

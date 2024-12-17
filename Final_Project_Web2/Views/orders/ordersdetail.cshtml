@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Final_Project_Web2.Models.orders>
+
+@{
+    ViewData["Title"] = "ordersdetail";
+}
+
+<h1>Orders detail</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.custname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.total)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.custname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total)
+                </td>
+                <td>
+                    <a asp-action="Orderline" asp-route-orid="@item.Id">View</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

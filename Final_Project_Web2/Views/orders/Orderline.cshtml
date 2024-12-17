@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Final_Project_Web2.Models.orderline>
+
+@if ((string)ViewData["role"] == "admin")
+{ Layout = "_Layout"; }
+else
+{ Layout = "_Layout1"; }
+
+
+<h1>Order Details</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>  @Html.DisplayNameFor(model => model.itemname) </th>
+            <th>  @Html.DisplayNameFor(model => model.itemquant) </th>
+            <th>  @Html.DisplayNameFor(model => model.itemprice)  </th>    
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>  @Html.DisplayFor(modelItem => item.itemname) </td>
+            <td> @Html.DisplayFor(modelItem => item.itemquant) </td>
+            <td>   @Html.DisplayFor(modelItem => item.itemprice)  </td>  
+        </tr>
+  }
+    </tbody>
+</table>
+@if ((string)ViewData["role"] == "admin")
+{
+    <p> <a asp-action="index" class="btn btn-primary">Back to Orders </a></p>
+}
+else
+{
+     <p> <a asp-action="MyOrder" class="btn btn-primary">Back to Orders </a></p>
+}

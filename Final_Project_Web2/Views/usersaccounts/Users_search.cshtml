@@ -1,0 +1,74 @@
+﻿@model Final_Project_Web2.Models.usersaccounts
+
+@{
+
+    Layout = "_Layout";
+
+
+}
+<h1>Users Search</h1>
+
+<div class="form-container">
+    <form asp-action="users_search">
+        <div class="form-group">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Select role</label>
+            <select class="form-control" name="cata" id="ca" onchange="getName()">
+                <option value="0"> Please select</option>
+                <option value="admin">admin</option>
+                <option value="customer">customer</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Select name</label>
+            <select class="form-control" name="Name" id="na"> </select>
+        </div>
+        <input type="submit" value="Show" class="btn btn-default" />
+    </form>
+</div>
+<div class="details-container">
+
+    <div class="user-information">
+        <h4>User Information</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.pass)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.pass)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.role)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.role)
+            </dd>
+
+        </dl>
+    </div>
+
+    <div class="actions">
+        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>
+<script>
+    async function getName() {
+        var cc = document.getElementById('ca').value;
+        var response = await fetch('/getname/' + cc);
+        let x = await response.json();
+        var dd = "<option> Please select</option>";
+        for (i = 0; i < x.length; i++) {
+            dd += "<option>" + x[i].name + "</option>";
+        }
+        document.getElementById("na").innerHTML = dd;
+    }
+</script>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Final_Project_Web2.Models.items>
+
+@if ((string)ViewData["role"] == "admin")
+{ Layout = "_Layout"; }
+else
+{ Layout = "_Layout1"; }
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        @item.name
+                    </div>
+                    <div class="card-body">
+                        <img src="~/images/@item.imgfile" height="150" />
+                    </div>
+                    <div class="card-footer">
+                        <a asp-action="BuyDetail" asp-route-id="@item.Id">Buy</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

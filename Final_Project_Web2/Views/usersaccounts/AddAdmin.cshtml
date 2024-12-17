@@ -1,0 +1,39 @@
+﻿@model Final_Project_Web2.Models.usersaccounts
+
+@{
+    Layout = "_Layout";
+}
+<h1>Add Admin</h1>
+
+<div class="form-container">
+
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="AddAdmin">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label for="UserName">Name</label>
+                    <input type="text" id="UserName" name="UserName" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    <input type="password" id="Password" name="Password" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label for="ConfirmPassword">Confirm Password</label>
+                    <input type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+            <h3 class ="text-danger">@ViewData["Message"]</h3>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

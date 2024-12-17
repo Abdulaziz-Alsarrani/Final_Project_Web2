@@ -1,0 +1,83 @@
+﻿@model Final_Project_Web2.Models.items
+
+
+<hr />
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<div class="modal fade" id="insertModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Create New Item</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form asp-action="Create" asp-controller="Items" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="name" class="control-label"></label>
+                            <input asp-for="name" class="form-control" />
+                            <span asp-validation-for="name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="description" class="control-label"></label>
+                            <input asp-for="description" class="form-control" />
+                            <span asp-validation-for="description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="price" class="control-label"></label>
+                            <input asp-for="price" class="form-control" />
+                            <span asp-validation-for="price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="quantity" class="control-label"></label>
+                            <input asp-for="quantity" class="form-control" />
+                            <span asp-validation-for="quantity" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="discount" class="control-label"></label>
+                            <div class="checkbox">
+                                <label> <input type="radio" asp-for="discount" value="yes" /> Yes</label>
+                            </div>
+                            <div class="checkbox">
+                                <label> <input type="radio" asp-for="discount" value="no" />No</label>
+                            </div>
+                            <span asp-validation-for="discount" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="makedate" class="control-label"></label>
+                            <input asp-for="makedate" class="form-control" />
+                            <span asp-validation-for="makedate" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Category</label>
+                            <select class="form-control" asp-for="category">
+                                <option value="0">Please select</option>
+                                <option value="1">iOS</option>
+                                <option value="2">Android</option>
+                            </select>
+                            <span asp-validation-for="category" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Pic</label>
+                            <input type="file" class="form-control" name="file" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+﻿@model Final_Project_Web2.Models.items
+
+@if ((string)ViewData["role"] == "admin")
+{ Layout = "_Layout"; }
+else
+{ Layout = "_Layout1"; }
+
+<dl class="row">
+    <dt class="col-sm-2"> Id </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Id)
+    </dd>
+    <dt class="col-sm-2">title </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.name)
+    </dd>
+    <dt class="col-sm-2"> info</dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.description)
+    </dd>
+    <dt class="col-sm-2">bookquantity</dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.quantity)
+    </dd>
+    <dt class="col-sm-2">price </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.price)
+    </dd>
+    <dt class="col-sm-2">discount </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.discount)
+    </dd>
+    <dt class="col-sm-2">category</dt>
+    <dd class="col-sm-10">
+        @{
+            var categoryName = Model.category switch
+            {
+                1 => "iOS",
+                2 => "android",
+                _ => "Unknown"
+            };
+        }
+        @categoryName
+    </dd>
+    <dt> Pic </dt>
+    <dd>
+        <img src="~/images/@Model.imgfile" height="150" />
+        <br />@Model.imgfile
+    </dd>
+</dl>
+<p style="color:red"> @ViewData["message"]</p>
+<form asp-action="cartadd" onsubmit="return validateQuantity()">
+    <input type="hidden" name="Id" value=@Model.Id />
+    <div class="form-group">
+        <label for="quantity" class="control-label">Quantity</label>
+        <input name="quantity" class="form-control" id="qu" onchange="gettotal()" />
+    </div>
+    <div class='alert alert-success' id="tot"> </div>
+
+    <input type="submit" value="Add to Cart" class="btn btn-primary" />
+
+</form>
+
+
+@section scripts {
+    <script>
+        function gettotal() {
+            tot = 0;
+            var q = parseInt(document.getElementById('qu').value);
+            var pr = parseFloat('@Model.price');
+            var availableQuantity = parseInt('@Model.quantity');
+
+          if (isNaN(q) || q <= 0) {
+            document.getElementById("tot").innerHTML = "Please enter a valid quantity!";
+            return;
+             }
+
+            if (q <= availableQuantity) {
+                tot = q * pr;
+                if ('@Model.discount' == "yes") {
+                    tot = (tot * 90) / 100;
+                    document.getElementById("tot").innerHTML = "total = " + tot;
+                } else {
+                    document.getElementById("tot").innerHTML = "total = " + tot;
+                }
+            } else {
+                document.getElementById("tot").innerHTML = "Insufficient quantity!";
+            }
+
+        }
+         function validateQuantity() {
+            var q = parseInt(document.getElementById('qu').value);
+            var availableQuantity = parseInt('@Model.quantity');
+
+              if (q === "" || isNaN(q) || parseInt(q) <= 0) {
+            alert("Please enter a valid quantity.");
+            return false; // Prevent form submission
+                 }
+
+            if (q > availableQuantity) {
+                alert("The quantity entered exceeds the available stock!");
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+    </script>
+}

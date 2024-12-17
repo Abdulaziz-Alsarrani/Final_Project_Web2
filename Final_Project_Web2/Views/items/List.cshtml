@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Final_Project_Web2.Models.items>
+
+@if ((string)ViewData["role"] == "admin")
+{
+    Layout = "_layout";
+}
+else
+{
+    Layout = "_layout1";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.name)</th>
+            <th>@Html.DisplayNameFor(model => model.description)</th>
+            <th>@Html.DisplayNameFor(model => model.price)</th>
+            <th>@Html.DisplayNameFor(model => model.quantity)</th>
+            <th>@Html.DisplayNameFor(model => model.discount)</th>
+            <th>@Html.DisplayNameFor(model => model.category)</th>
+            <th>@Html.DisplayNameFor(model => model.imgfile)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.name)</td>
+                <td>@Html.DisplayFor(modelItem => item.description)</td>
+                <td>@Html.DisplayFor(modelItem => item.price)</td>
+                <td>@Html.DisplayFor(modelItem => item.quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.discount)</td>
+                <td>@Html.DisplayFor(modelItem => item.category)</td>
+                <td>
+                    <img src="~/images/@item.imgfile" alt="Item Image" height="50" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
