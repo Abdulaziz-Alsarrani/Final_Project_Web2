@@ -118,6 +118,11 @@ namespace Final_Project_Web2.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult email(string address, string subject, string body)
         {
+            string role = HttpContext.Session.GetString("Role");
+            if (role != "admin")
+            {
+                return RedirectToAction("Login", "UsersAccounts");
+            }
             SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
             var mail = new MailMessage();
             mail.From = new MailAddress("phix376@gmail.com");
@@ -127,7 +132,7 @@ namespace Final_Project_Web2.Controllers
             mail.Body = body;
             SmtpServer.Port = 587;
             SmtpServer.UseDefaultCredentials = false;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("fahadalsarani1@gmail.com", "QWERTasdfg321");
+            SmtpServer.Credentials = new System.Net.NetworkCredential("p33027077@gmail.com", "ybvz yphb xnfk gaam");
             SmtpServer.EnableSsl = true;
             SmtpServer.Send(mail);
             ViewData["Message"] = "Email sent !!";

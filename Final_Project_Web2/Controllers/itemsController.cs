@@ -81,6 +81,11 @@ namespace Final_Project_Web2.Controllers
         // GET: items/Create
         public IActionResult Create()
         {
+            string role = HttpContext.Session.GetString("Role");
+            if (role != "admin")
+            {
+                return RedirectToAction("Login", "UsersAccounts");
+            }
             return View();
         }
 
@@ -92,6 +97,7 @@ namespace Final_Project_Web2.Controllers
         public async Task<IActionResult> Create(IFormFile file, [Bind("Id,name,description,price,discount,makedate,category,quantity,imgfile")] items items)
         {
             {
+    
                 if (file != null)
                 {
                     string filename = file.FileName;
@@ -110,6 +116,11 @@ namespace Final_Project_Web2.Controllers
         // GET: items/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            string role = HttpContext.Session.GetString("Role");
+            if (role != "admin")
+            {
+                return RedirectToAction("Login", "UsersAccounts");
+            }
             if (id == null)
             {
                 return NotFound();
@@ -161,7 +172,12 @@ namespace Final_Project_Web2.Controllers
         // GET: items/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            ViewData["role"] = HttpContext.Session.GetString("Role");
+            string role = HttpContext.Session.GetString("Role");
+            if (role != "admin")
+            {
+                return RedirectToAction("Login", "UsersAccounts");
+            }
+            ViewData["role"] = role;
             if (id == null)
             {
                 return NotFound();
